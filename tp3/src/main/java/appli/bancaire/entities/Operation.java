@@ -5,11 +5,17 @@ import java.time.LocalDateTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "OPERATION")
 public class Operation {
+
+	@ManyToOne
+	@JoinColumn(name = "COMPTE_ID")
+	private Compte compte;
 
 	@Id
 	@Column(name = "ID")
@@ -54,6 +60,14 @@ public class Operation {
 
 	public void setMotif(String motif) {
 		this.motif = motif;
+	}
+
+	public Compte getCompte() {
+		return compte;
+	}
+
+	public void setCompte(Compte compte) {
+		this.compte = compte;
 	}
 
 }

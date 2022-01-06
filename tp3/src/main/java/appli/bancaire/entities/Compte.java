@@ -1,16 +1,25 @@
 package appli.bancaire.entities;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "COMPTE")
 public class Compte {
+
+	@OneToMany(mappedBy = "compte")
+	private Set<Operation> operations;
+
+	public Compte() {
+		operations = new HashSet<Operation>();
+	}
 
 	@ManyToMany(mappedBy = "comptes")
 	private Set<Client> clients;
@@ -55,6 +64,14 @@ public class Compte {
 
 	public void setClients(Set<Client> clients) {
 		this.clients = clients;
+	}
+
+	public Set<Operation> getOperations() {
+		return operations;
+	}
+
+	public void setOperations(Set<Operation> operations) {
+		this.operations = operations;
 	}
 
 }
