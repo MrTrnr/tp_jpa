@@ -1,6 +1,7 @@
 package appli.bancaire;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -11,6 +12,7 @@ import appli.bancaire.entities.Adresse;
 import appli.bancaire.entities.Banque;
 import appli.bancaire.entities.Client;
 import appli.bancaire.entities.Compte;
+import appli.bancaire.entities.Operation;
 
 public class TestAppliBancaire {
 
@@ -52,12 +54,16 @@ public class TestAppliBancaire {
 		clientNouveau.setNom("Verne");
 		clientNouveau.setPrenom("Jules");
 
-		LocalDate dateDeNaissance = LocalDate.of(1828, 2, 8);
-		clientNouveau.setDateNaissance(dateDeNaissance);
+//		LocalDate dateDeNaissance = LocalDate.of(1828, 2, 8);
+//		clientNouveau.setDateNaissance(dateDeNaissance);
 
-		Integer idBanque = 3;
-		Banque uneBanque = em.find(Banque.class, idBanque);
-		clientNouveau.setBanque(uneBanque);
+		clientNouveau.setDateNaissance(LocalDate.of(1828, 2, 8));
+
+//		Integer idBanque = 3;
+//		Banque uneBanque = em.find(Banque.class, idBanque);
+//		clientNouveau.setBanque(uneBanque);
+
+		clientNouveau.setBanque(em.find(Banque.class, 3));
 
 		Adresse adresseClientNouveau = new Adresse();
 		adresseClientNouveau.setNumero(5);
@@ -73,12 +79,9 @@ public class TestAppliBancaire {
 		clientNouveau2.setNom("Mion");
 		clientNouveau2.setPrenom("Jessica");
 
-		LocalDate dateDeNaissance2 = LocalDate.of(1993, 10, 19);
-		clientNouveau2.setDateNaissance(dateDeNaissance2);
+		clientNouveau2.setDateNaissance(LocalDate.of(1993, 10, 19));
 
-		Integer idBanque2 = 1;
-		Banque uneBanque2 = em.find(Banque.class, idBanque2);
-		clientNouveau2.setBanque(uneBanque2);
+		clientNouveau2.setBanque(em.find(Banque.class, 1));
 
 		Adresse adresseClientNouveau2 = new Adresse();
 		adresseClientNouveau2.setNumero(27);
@@ -121,6 +124,35 @@ public class TestAppliBancaire {
 		compteNouveau4.setSolde(-45.16D);
 
 		em.persist(compteNouveau4);
+
+		tx.commit();
+
+		// ajouter des opérations dans la bdd
+		tx.begin();
+
+		Operation operationNouveau = new Operation();
+
+		operationNouveau.setId(23);
+
+//		LocalDateTime dateOperation = LocalDateTime.of(2022, 02, 01, 22, 51, 17);
+//		operationNouveau.setDate(dateOperation);
+
+		operationNouveau.setDate(LocalDateTime.of(2022, 02, 01, 22, 51, 17));
+		operationNouveau.setMontant(-23.29D);
+		operationNouveau.setMotif("Frais bancaires semestriels");
+		operationNouveau.setCompte(em.find(Compte.class, 3));
+
+		em.persist(operationNouveau);
+
+		Operation operationNouveau2 = new Operation();
+
+		operationNouveau2.setId(89);
+		operationNouveau2.setDate(LocalDateTime.of(2019, 12, 25, 12, 42, 33));
+		operationNouveau2.setMontant(1963D);
+		operationNouveau2.setMotif("Salaire Décembre");
+		operationNouveau2.setCompte(em.find(Compte.class, 1));
+
+		em.persist(operationNouveau2);
 
 		tx.commit();
 
