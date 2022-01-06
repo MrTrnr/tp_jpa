@@ -1,9 +1,13 @@
 package dev.entities;
 
 import java.util.Date;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -24,6 +28,13 @@ public class Emprunt {
 
 	@Column(name = "ID_CLIENT")
 	private Integer idClient;
+
+	@ManyToOne
+	@JoinColumn(name = "ID_CLIENT")
+	private Client client;
+
+	@ManyToMany(mappedBy = "emprunts")
+	private Set<Livre> livres;
 
 	public Integer getId() {
 		return id;
