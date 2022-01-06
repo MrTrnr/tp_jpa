@@ -29,6 +29,9 @@ public class TestBibliotheque {
 			System.out.println("livre emprunté : " + li.getTitre());
 		}
 
+		tx.commit();
+
+		tx.begin();
 		// extraire tous les emprunts d'un client donné
 		TypedQuery<Client> unClient = em.createQuery("select c from Client c where c.id='3'", Client.class);
 		Set<Emprunt> empruntsDUnClient = unClient.getSingleResult().getEmprunts();
@@ -36,23 +39,6 @@ public class TestBibliotheque {
 		for (Emprunt e : empruntsDUnClient) {
 			System.out.println("emprunt n° : " + e.getId());
 		}
-
-//		System.out.println("emprunt d'id 2 : " + unEmprunt.getSingleResult().getLivres());
-
-//		Emprunt emprunt1 = em.find(Emprunt.class, 2);
-//
-
-		// requete JPQL extrayant un livre en fonction de son auteur
-//		TypedQuery<Livre> query2 = em.createQuery("select l from Livre l where l.auteur='Emile Zola'", Livre.class);
-//		System.out.println("Titre du livre d'Emile Zola : " + query2.getSingleResult().getTitre());
-//
-//		TypedQuery<Livre> query3 = em.createQuery("select l from Livre l", Livre.class);
-//		List<Livre> tousLesLivres = query3.getResultList();
-//		for (Livre li : tousLesLivres) {
-//			System.out.println("L'auteur du Livre " + li.getTitre() + " est : " + li.getAuteur());
-//		}
-//		System.out.println("Titre : " + livre1.getTitre() + " Auteur : " + livre1.getAuteur());
-
 		tx.commit();
 
 		em.close();
