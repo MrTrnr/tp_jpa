@@ -2,6 +2,8 @@ package appli.bancaire;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -153,6 +155,29 @@ public class TestAppliBancaire {
 		operationNouveau2.setCompte(em.find(Compte.class, 1));
 
 		em.persist(operationNouveau2);
+
+		tx.commit();
+
+		// ajouter des relations comptes/clients
+		// le client d'ID 2 possède les comptes d'ID 1 et d'ID 4
+		tx.begin();
+
+		Set<Compte> comptesDUnClient = new HashSet<>();
+
+		Client unClient = em.find(Client.class, 2);
+
+//		Compte unCompte = em.find(Compte.class, 1);
+//		Compte unAutreCompte = em.find(Compte.class, 4);
+//
+//		comptesDUnClient.add(unCompte);
+//		comptesDUnClient.add(unAutreCompte);
+
+		comptesDUnClient.add(em.find(Compte.class, 1));
+		comptesDUnClient.add(em.find(Compte.class, 4));
+
+		unClient.setComptes(comptesDUnClient);
+
+		em.persist(unClient);
 
 		tx.commit();
 
