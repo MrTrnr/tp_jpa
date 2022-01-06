@@ -54,4 +54,12 @@ public class Client {
 		this.prenom = prenom;
 	}
 
+	public Set<Emprunt> getEmprunts() {
+		return emprunts;
+	}
+
+	public void setEmprunts(Set<Emprunt> emprunts) {
+		this.emprunts = emprunts;
+	}
+
 }

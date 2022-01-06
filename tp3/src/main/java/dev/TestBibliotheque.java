@@ -8,6 +8,7 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 
+import dev.entities.Client;
 import dev.entities.Emprunt;
 import dev.entities.Livre;
 
@@ -20,12 +21,22 @@ public class TestBibliotheque {
 
 		tx.begin();
 
-		// trouver un emprunt et tous ses livres associés
+		// extraire un emprunt et tous ses livres associés
 		TypedQuery<Emprunt> unEmprunt = em.createQuery("select e from Emprunt e where e.id='2'", Emprunt.class);
 		Set<Livre> listeDesLivresEmpruntes = unEmprunt.getSingleResult().getLivres();
+		System.out.println("L'emprunt numéro 2 contient : ");
 		for (Livre li : listeDesLivresEmpruntes) {
 			System.out.println("livre emprunté : " + li.getTitre());
 		}
+
+		// extraire tous les emprunts d'un client donné
+		TypedQuery<Client> unClient = em.createQuery("select c from Client c where c.id='3'", Client.class);
+		Set<Emprunt> empruntsDUnClient = unClient.getSingleResult().getEmprunts();
+		System.out.println("Le client numéro 3 a les emprunts suivants : ");
+		for (Emprunt e : empruntsDUnClient) {
+			System.out.println("emprunt n° : " + e.getId());
+		}
+
 //		System.out.println("emprunt d'id 2 : " + unEmprunt.getSingleResult().getLivres());
 
 //		Emprunt emprunt1 = em.find(Emprunt.class, 2);
