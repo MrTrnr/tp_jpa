@@ -18,10 +18,10 @@
 	<persistence-unit name="banque-pu"
 		transaction-type="RESOURCE_LOCAL">
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-		<class>banque.entite.Banque</class>
-		<class>banque.entite.Client</class>
-		<class>banque.entite.Compte</class>
-		<class>banque.entite.LivretA</class>
+		<class>appli.bancaire.entities.Banque</class>
+		<class>appli.bancaire.entities.Client</class>
+		<class>appli.bancaire.entities.Compte</class>
+		<class>appli.bancaire.entities.Operation</class>
 		<properties>
 			<!-- desactiver l'autodetection des classes de type @Entity -->
 			<property name="hibernate.archive.autodetection" value="" />

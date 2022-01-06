@@ -1,8 +1,12 @@
 package appli.bancaire.entities;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -15,6 +19,13 @@ public class Banque {
 
 	@Column(name = "NOM")
 	private String nom;
+
+	@OneToMany(mappedBy = "banque")
+	private Set<Client> clients;
+
+	public Banque() {
+		clients = new HashSet<Client>();
+	}
 
 	public Integer getId() {
 		return id;
@@ -30,6 +41,14 @@ public class Banque {
 
 	public void setNom(String nom) {
 		this.nom = nom;
+	}
+
+	public Set<Client> getClients() {
+		return clients;
+	}
+
+	public void setClients(Set<Client> clients) {
+		this.clients = clients;
 	}
 
 }
