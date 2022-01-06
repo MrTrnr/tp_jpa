@@ -1,5 +1,6 @@
 package dev.entities;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -24,6 +25,10 @@ public class Client {
 
 	@OneToMany(mappedBy = "client")
 	private Set<Emprunt> emprunts;
+
+	public Client() {
+		emprunts = new HashSet<Emprunt>();
+	}
 
 	public Integer getId() {
 		return id;
