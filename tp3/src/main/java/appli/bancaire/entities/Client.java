@@ -2,20 +2,27 @@ package appli.bancaire.entities;
 
 import java.time.LocalDate;
 
+import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "CLIENT")
 public class Client {
 
 	@Id
+	@Column(name = "ID")
 	private Integer id;
 
+	@Column(name = "NOM")
 	private String nom;
 
+	@Column(name = "PRENOM")
 	private String prenom;
 
+	@Column(name = "DATE_NAISSANCE")
 	private LocalDate dateNaissance;
 
 	@Embedded

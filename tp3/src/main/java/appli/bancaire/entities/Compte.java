@@ -1,16 +1,22 @@
 package appli.bancaire.entities;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "COMPTE")
 public class Compte {
 
 	@Id
+	@Column(name = "ID")
 	private Integer id;
 
+	@Column(name = "NUMERO")
 	private String numero;
 
+	@Column(name = "SOLDE")
 	private Double solde;
 
 	public Integer getId() {
