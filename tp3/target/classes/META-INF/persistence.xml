@@ -6,23 +6,45 @@
 		transaction-type="RESOURCE_LOCAL">
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 		<properties>
-			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/bibliotheque?serverTimezone=Europe/Paris" />
+			<property name="javax.persistence.jdbc.url"
+				value="jdbc:mysql://localhost:3306/bibliotheque?serverTimezone=Europe/Paris" />
 			<property name="javax.persistence.jdbc.user" value="root" />
 			<property name="javax.persistence.jdbc.password" value="" />
-			<property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver" />
+			<property name="javax.persistence.jdbc.driver"
+				value="com.mysql.cj.jdbc.Driver" />
 			<property name="hibernate.show_sql" value="true" />
 		</properties>
 	</persistence-unit>
 	<persistence-unit name="banque-pu"
 		transaction-type="RESOURCE_LOCAL">
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+		<class>banque.entite.Banque</class>
+		<class>banque.entite.Client</class>
+		<class>banque.entite.Compte</class>
+		<class>banque.entite.LivretA</class>
 		<properties>
-			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/banque?serverTimezone=Europe/Paris" />
+			<!-- desactiver l'autodetection des classes de type @Entity -->
+			<property name="hibernate.archive.autodetection" value="" />
+
+			<!-- Activation de la génération des tables manquantes uniquement -->
+			<property name="hibernate.hbm2ddl.auto" value="update" />
+
+			<!-- Drop and create à chaque redémarrage -->
+			<property
+				name="javax.persistence.schema-generation.database.action"
+				value="drop-and-create" />
+
+			<!-- Affichage des requêtes SQL -->
+			<property name="hibernate.show_sql" value="true" />
+
+			<!-- Paramètres d'accès à la BDD -->
+			<property name="javax.persistence.jdbc.url"
+				value="jdbc:mysql://localhost:3306/banque?serverTimezone=Europe/Paris" />
 			<property name="javax.persistence.jdbc.user" value="root" />
 			<property name="javax.persistence.jdbc.password" value="" />
-			<property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver" />
-			<property name="hibernate.show_sql" value="true" />
+			<property name="javax.persistence.jdbc.driver"
+				value="com.mysql.cj.jdbc.Driver" />
 		</properties>
 	</persistence-unit>
-	
+
 </persistence>
