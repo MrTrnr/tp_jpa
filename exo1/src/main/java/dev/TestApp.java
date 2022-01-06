@@ -10,7 +10,7 @@ import javax.persistence.TypedQuery;
 
 import entites.Livre;
 
-public class TestJpa {
+public class TestApp {
 
 	public static void main(String[] args) {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("livre-pu");

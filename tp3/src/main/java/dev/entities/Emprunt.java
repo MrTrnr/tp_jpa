@@ -28,8 +28,21 @@ public class Emprunt {
 	@Column(name = "DELAI")
 	private Integer delai;
 
-	@Column(name = "ID_CLIENT")
-	private Integer idClient;
+	public Client getClient() {
+		return client;
+	}
+
+	public void setClient(Client client) {
+		this.client = client;
+	}
+
+	public Set<Livre> getLivres() {
+		return livres;
+	}
+
+	public void setLivres(Set<Livre> livres) {
+		this.livres = livres;
+	}
 
 	@ManyToOne
 	@JoinColumn(name = "ID_CLIENT")
@@ -68,14 +81,6 @@ public class Emprunt {
 
 	public void setDelai(Integer delai) {
 		this.delai = delai;
-	}
-
-	public Integer getIdClient() {
-		return idClient;
-	}
-
-	public void setIdClient(Integer idClient) {
-		this.idClient = idClient;
 	}
 
 }
