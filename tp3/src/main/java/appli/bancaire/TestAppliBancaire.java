@@ -10,6 +10,7 @@ import javax.persistence.Persistence;
 import appli.bancaire.entities.Adresse;
 import appli.bancaire.entities.Banque;
 import appli.bancaire.entities.Client;
+import appli.bancaire.entities.Compte;
 
 public class TestAppliBancaire {
 
@@ -22,8 +23,7 @@ public class TestAppliBancaire {
 		// ajouter des banques dans la bdd
 		tx.begin();
 
-		// idée de refactoring : utiliser une liste des données et une boucle for
-
+		// idée de refactoring : utiliser une liste des données et une boucle foreach
 		Banque banqueNouveau = new Banque();
 		banqueNouveau.setId(1);
 		banqueNouveau.setNom("BNP");
@@ -88,6 +88,39 @@ public class TestAppliBancaire {
 		clientNouveau2.setAdresse(adresseClientNouveau2);
 
 		em.persist(clientNouveau2);
+
+		tx.commit();
+
+		// ajouter des comptes dans la bdd
+		tx.begin();
+
+		Compte compteNouveau = new Compte();
+		compteNouveau.setId(1);
+		compteNouveau.setNumero("369258147");
+		compteNouveau.setSolde(200D);
+
+		em.persist(compteNouveau);
+
+		Compte compteNouveau2 = new Compte();
+		compteNouveau2.setId(2);
+		compteNouveau2.setNumero("2222");
+		compteNouveau2.setSolde(-456.123D);
+
+		em.persist(compteNouveau2);
+
+		Compte compteNouveau3 = new Compte();
+		compteNouveau3.setId(3);
+		compteNouveau3.setNumero("33133133");
+		compteNouveau3.setSolde(5624.12D);
+
+		em.persist(compteNouveau3);
+
+		Compte compteNouveau4 = new Compte();
+		compteNouveau4.setId(4);
+		compteNouveau4.setNumero("40404");
+		compteNouveau4.setSolde(-45.16D);
+
+		em.persist(compteNouveau4);
 
 		tx.commit();
 
