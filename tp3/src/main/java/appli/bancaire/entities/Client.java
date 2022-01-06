@@ -1,18 +1,29 @@
 package appli.bancaire.entities;
 
 import java.time.LocalDate;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "CLIENT")
 public class Client {
+
+	@ManyToMany
+	@JoinTable(name = "CLIENT_COMPTE", joinColumns = @JoinColumn(name = "ID_CLIENT", referencedColumnName = "ID"), inverseJoinColumns = @JoinColumn(name = "ID_COMPTE", referencedColumnName = "ID"))
+	private Set<Compte> comptes;
+
+	@ManyToOne
+	@JoinColumn(name = "BANQUE_ID")
+	private Banque banque;
 
 	@Id
 	@Column(name = "ID")
@@ -29,10 +40,6 @@ public class Client {
 
 	@Embedded
 	private Adresse adresse;
-
-	@ManyToOne
-	@JoinColumn(name = "BANQUE_ID")
-	private Banque banque;
 
 	public Integer getId() {
 		return id;
@@ -80,6 +87,14 @@ public class Client {
 
 	public void setBanque(Banque banque) {
 		this.banque = banque;
+	}
+
+	public Set<Compte> getComptes() {
+		return comptes;
+	}
+
+	public void setComptes(Set<Compte> comptes) {
+		this.comptes = comptes;
 	}
 
 }

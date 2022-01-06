@@ -1,13 +1,19 @@
 package appli.bancaire.entities;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "COMPTE")
 public class Compte {
+
+	@ManyToMany(mappedBy = "comptes")
+	private Set<Client> clients;
 
 	@Id
 	@Column(name = "ID")
@@ -41,6 +47,14 @@ public class Compte {
 
 	public void setSolde(Double solde) {
 		this.solde = solde;
+	}
+
+	public Set<Client> getClients() {
+		return clients;
+	}
+
+	public void setClients(Set<Client> clients) {
+		this.clients = clients;
 	}
 
 }
