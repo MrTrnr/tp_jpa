@@ -27,21 +27,17 @@ public class TestAppliBancaire {
 
 		tx.begin();
 
-		// idée de refactoring : utiliser une liste des données et une boucle foreach
 		Banque banqueNouveau = new Banque();
-		banqueNouveau.setId(1);
 		banqueNouveau.setNom("BNP");
 
 		em.persist(banqueNouveau);
 
 		Banque banqueNouveau2 = new Banque();
-		banqueNouveau2.setId(2);
 		banqueNouveau2.setNom("Société Générale");
 
 		em.persist(banqueNouveau2);
 
 		Banque banqueNouveau3 = new Banque();
-		banqueNouveau3.setId(3);
 		banqueNouveau3.setNom("Crédit Mutuel");
 
 		em.persist(banqueNouveau3);
@@ -53,7 +49,6 @@ public class TestAppliBancaire {
 		tx2.begin();
 
 		Client clientNouveau = new Client();
-		clientNouveau.setId(1);
 		clientNouveau.setNom("Verne");
 		clientNouveau.setPrenom("Jules");
 
@@ -78,7 +73,6 @@ public class TestAppliBancaire {
 		em.persist(clientNouveau);
 
 		Client clientNouveau2 = new Client();
-		clientNouveau2.setId(2);
 		clientNouveau2.setNom("Mion");
 		clientNouveau2.setPrenom("Jessica");
 
@@ -95,6 +89,23 @@ public class TestAppliBancaire {
 
 		em.persist(clientNouveau2);
 
+		Client clientNouveau3 = new Client();
+		clientNouveau3.setNom("Brioche");
+		clientNouveau3.setPrenom("Martine");
+
+		clientNouveau3.setDateNaissance(LocalDate.of(2001, 7, 3));
+
+		clientNouveau3.setBanque(em.find(Banque.class, 2));
+
+		Adresse adresseClientNouveau3 = new Adresse();
+		adresseClientNouveau3.setNumero(17);
+		adresseClientNouveau3.setRue("rue des Chouettes");
+		adresseClientNouveau3.setCodePostal(56000);
+		adresseClientNouveau3.setVille("Vannes");
+		clientNouveau3.setAdresse(adresseClientNouveau3);
+
+		em.persist(clientNouveau3);
+
 		tx2.commit();
 
 		// ajouter des comptes dans la bdd
@@ -102,28 +113,24 @@ public class TestAppliBancaire {
 		tx3.begin();
 
 		Compte compteNouveau = new Compte();
-		compteNouveau.setId(1);
 		compteNouveau.setNumero("369258147");
 		compteNouveau.setSolde(200D);
 
 		em.persist(compteNouveau);
 
 		Compte compteNouveau2 = new Compte();
-		compteNouveau2.setId(2);
 		compteNouveau2.setNumero("2222");
 		compteNouveau2.setSolde(-456.123D);
 
 		em.persist(compteNouveau2);
 
 		Compte compteNouveau3 = new Compte();
-		compteNouveau3.setId(3);
 		compteNouveau3.setNumero("33133133");
 		compteNouveau3.setSolde(5624.12D);
 
 		em.persist(compteNouveau3);
 
 		Compte compteNouveau4 = new Compte();
-		compteNouveau4.setId(4);
 		compteNouveau4.setNumero("40404");
 		compteNouveau4.setSolde(-45.16D);
 
@@ -137,8 +144,6 @@ public class TestAppliBancaire {
 
 		Operation operationNouveau = new Operation();
 
-		operationNouveau.setId(23);
-
 //		LocalDateTime dateOperation = LocalDateTime.of(2022, 02, 01, 22, 51, 17);
 //		operationNouveau.setDate(dateOperation);
 
@@ -151,7 +156,6 @@ public class TestAppliBancaire {
 
 		Operation operationNouveau2 = new Operation();
 
-		operationNouveau2.setId(89);
 		operationNouveau2.setDate(LocalDateTime.of(2019, 12, 25, 12, 42, 33));
 		operationNouveau2.setMontant(1963D);
 		operationNouveau2.setMotif("Salaire Décembre");
@@ -184,6 +188,12 @@ public class TestAppliBancaire {
 		em.persist(unClient);
 
 		tx5.commit();
+
+		// ajouter un compte qui a 2 clients
+		// le compte d'ID
+		EntityTransaction tx6 = em.getTransaction();
+		tx6.begin();
+		tx6.commit();
 
 		em.close();
 
