@@ -22,9 +22,9 @@ public class TestAppliBancaire {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("banque-pu");
 		EntityManager em = emf.createEntityManager();
 
+		// ajouter des banques dans la bdd
 		EntityTransaction tx = em.getTransaction();
 
-		// ajouter des banques dans la bdd
 		tx.begin();
 
 		// idée de refactoring : utiliser une liste des données et une boucle foreach
@@ -49,7 +49,8 @@ public class TestAppliBancaire {
 		tx.commit();
 
 		// ajouter des clients dans la bdd
-		tx.begin();
+		EntityTransaction tx2 = em.getTransaction();
+		tx2.begin();
 
 		Client clientNouveau = new Client();
 		clientNouveau.setId(1);
@@ -94,43 +95,45 @@ public class TestAppliBancaire {
 
 		em.persist(clientNouveau2);
 
-		tx.commit();
+		tx2.commit();
 
-//		// ajouter des comptes dans la bdd
-//		tx.begin();
-//
-//		Compte compteNouveau = new Compte();
-//		compteNouveau.setId(1);
-//		compteNouveau.setNumero("369258147");
-//		compteNouveau.setSolde(200D);
-//
-//		em.persist(compteNouveau);
-//
-//		Compte compteNouveau2 = new Compte();
-//		compteNouveau2.setId(2);
-//		compteNouveau2.setNumero("2222");
-//		compteNouveau2.setSolde(-456.123D);
-//
-//		em.persist(compteNouveau2);
-//
-//		Compte compteNouveau3 = new Compte();
-//		compteNouveau3.setId(3);
-//		compteNouveau3.setNumero("33133133");
-//		compteNouveau3.setSolde(5624.12D);
-//
-//		em.persist(compteNouveau3);
-//
-//		Compte compteNouveau4 = new Compte();
-//		compteNouveau4.setId(4);
-//		compteNouveau4.setNumero("40404");
-//		compteNouveau4.setSolde(-45.16D);
-//
-//		em.persist(compteNouveau4);
-//
-//		tx.commit();
+		// ajouter des comptes dans la bdd
+		EntityTransaction tx3 = em.getTransaction();
+		tx3.begin();
+
+		Compte compteNouveau = new Compte();
+		compteNouveau.setId(1);
+		compteNouveau.setNumero("369258147");
+		compteNouveau.setSolde(200D);
+
+		em.persist(compteNouveau);
+
+		Compte compteNouveau2 = new Compte();
+		compteNouveau2.setId(2);
+		compteNouveau2.setNumero("2222");
+		compteNouveau2.setSolde(-456.123D);
+
+		em.persist(compteNouveau2);
+
+		Compte compteNouveau3 = new Compte();
+		compteNouveau3.setId(3);
+		compteNouveau3.setNumero("33133133");
+		compteNouveau3.setSolde(5624.12D);
+
+		em.persist(compteNouveau3);
+
+		Compte compteNouveau4 = new Compte();
+		compteNouveau4.setId(4);
+		compteNouveau4.setNumero("40404");
+		compteNouveau4.setSolde(-45.16D);
+
+		em.persist(compteNouveau4);
+
+		tx3.commit();
 
 		// ajouter des opérations dans la bdd
-		tx.begin();
+		EntityTransaction tx4 = em.getTransaction();
+		tx4.begin();
 
 		Operation operationNouveau = new Operation();
 
@@ -156,11 +159,12 @@ public class TestAppliBancaire {
 
 		em.persist(operationNouveau2);
 
-		tx.commit();
+		tx4.commit();
 
 		// ajouter des relations comptes/clients
 		// le client d'ID 2 possède les comptes d'ID 1 et d'ID 4
-		tx.begin();
+		EntityTransaction tx5 = em.getTransaction();
+		tx5.begin();
 
 		Set<Compte> comptesDUnClient = new HashSet<>();
 
@@ -179,7 +183,7 @@ public class TestAppliBancaire {
 
 		em.persist(unClient);
 
-		tx.commit();
+		tx5.commit();
 
 		em.close();
 
