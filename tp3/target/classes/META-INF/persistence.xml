@@ -22,6 +22,9 @@
 		<class>appli.bancaire.entities.Client</class>
 		<class>appli.bancaire.entities.Compte</class>
 		<class>appli.bancaire.entities.Operation</class>
+		<class>appli.bancaire.entities.LivretA</class>
+		<class>appli.bancaire.entities.AssuranceVie</class>
+		
 		<properties>
 			<!-- desactiver l'autodetection des classes de type @Entity -->
 			<property name="hibernate.archive.autodetection" value="" />

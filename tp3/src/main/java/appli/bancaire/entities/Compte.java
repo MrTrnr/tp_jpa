@@ -6,13 +6,17 @@ import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
+@Inheritance(strategy = InheritanceType.JOINED)
+
 @Table(name = "COMPTE")
-public class Compte {
+public abstract class Compte {
 
 	@OneToMany(mappedBy = "compte")
 	private Set<Operation> operations;

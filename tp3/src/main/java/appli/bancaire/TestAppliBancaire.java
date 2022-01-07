@@ -96,38 +96,38 @@ public class TestAppliBancaire {
 
 		tx.commit();
 
-		// ajouter des comptes dans la bdd
-		tx.begin();
-
-		Compte compteNouveau = new Compte();
-		compteNouveau.setId(1);
-		compteNouveau.setNumero("369258147");
-		compteNouveau.setSolde(200D);
-
-		em.persist(compteNouveau);
-
-		Compte compteNouveau2 = new Compte();
-		compteNouveau2.setId(2);
-		compteNouveau2.setNumero("2222");
-		compteNouveau2.setSolde(-456.123D);
-
-		em.persist(compteNouveau2);
-
-		Compte compteNouveau3 = new Compte();
-		compteNouveau3.setId(3);
-		compteNouveau3.setNumero("33133133");
-		compteNouveau3.setSolde(5624.12D);
-
-		em.persist(compteNouveau3);
-
-		Compte compteNouveau4 = new Compte();
-		compteNouveau4.setId(4);
-		compteNouveau4.setNumero("40404");
-		compteNouveau4.setSolde(-45.16D);
-
-		em.persist(compteNouveau4);
-
-		tx.commit();
+//		// ajouter des comptes dans la bdd
+//		tx.begin();
+//
+//		Compte compteNouveau = new Compte();
+//		compteNouveau.setId(1);
+//		compteNouveau.setNumero("369258147");
+//		compteNouveau.setSolde(200D);
+//
+//		em.persist(compteNouveau);
+//
+//		Compte compteNouveau2 = new Compte();
+//		compteNouveau2.setId(2);
+//		compteNouveau2.setNumero("2222");
+//		compteNouveau2.setSolde(-456.123D);
+//
+//		em.persist(compteNouveau2);
+//
+//		Compte compteNouveau3 = new Compte();
+//		compteNouveau3.setId(3);
+//		compteNouveau3.setNumero("33133133");
+//		compteNouveau3.setSolde(5624.12D);
+//
+//		em.persist(compteNouveau3);
+//
+//		Compte compteNouveau4 = new Compte();
+//		compteNouveau4.setId(4);
+//		compteNouveau4.setNumero("40404");
+//		compteNouveau4.setSolde(-45.16D);
+//
+//		em.persist(compteNouveau4);
+//
+//		tx.commit();
 
 		// ajouter des opérations dans la bdd
 		tx.begin();
