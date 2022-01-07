@@ -16,7 +16,7 @@ import javax.persistence.Table;
 @Inheritance(strategy = InheritanceType.JOINED)
 
 @Table(name = "COMPTE")
-public abstract class Compte {
+public class Compte {
 
 	@OneToMany(mappedBy = "compte")
 	private Set<Operation> operations;
