@@ -3,8 +3,10 @@ package appli.bancaire.entities;
 import java.time.LocalDate;
 
 import javax.persistence.Entity;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "ASSURANCE_VIE")
 public class AssuranceVie extends Compte {
 
 	private LocalDate dateFin;

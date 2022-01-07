@@ -1,8 +1,10 @@
 package appli.bancaire.entities;
 
 import javax.persistence.Entity;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "LIVRET_A")
 public class LivretA extends Compte {
 
 	private Double taux;

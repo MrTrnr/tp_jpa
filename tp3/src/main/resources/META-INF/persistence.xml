@@ -24,6 +24,7 @@
 		<class>appli.bancaire.entities.Operation</class>
 		<class>appli.bancaire.entities.LivretA</class>
 		<class>appli.bancaire.entities.AssuranceVie</class>
+		<class>appli.bancaire.entities.Virement</class>
 		
 		<properties>
 			<!-- desactiver l'autodetection des classes de type @Entity -->
